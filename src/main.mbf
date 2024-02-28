@@ -4,8 +4,8 @@ Print "Hello(comma) World!"
 =============================
 string("Hello, World!
 ")
-repeat(.>; 14)
-repeat([-]<; 14)
+repeat(.>; 14) >
+repeat(<[-]; 14)
 =============================
 
 Exit with status 42
