@@ -1,0 +1,16 @@
+map(syscall; %)
+
+Exit with status 42
+=============================
+    exit()
+        +60 > Code 60 = exit()
+        +1  > Arg count: 1
+    
+    Arg 1: int status
+        (0) > Normal
+        +1  > Len: 1
+        +42 > Content: 42
+
+    <<<<< Return to cell 0
+    syscall Execute
+=============================
