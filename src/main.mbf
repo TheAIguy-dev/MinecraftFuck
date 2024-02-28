@@ -1,11 +1,19 @@
 map(syscall; %)
 
+Print "Hello(comma) World!"
+=============================
+string("Hello, World!
+")
+repeat(.>; 14)
+repeat([-]<; 14)
+=============================
+
 Exit with status 42
 =============================
     exit()
         +60 > Code 60 = exit()
         +1  > Arg count: 1
-    
+
     Arg 1: int status
         (0) > Normal
         +1  > Len: 1
