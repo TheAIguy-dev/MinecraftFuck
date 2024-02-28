@@ -1,0 +1,14 @@
+Exist with status of the current cell
+
+[->>>>+<<<<]
+exit()
+    +60 > Code
+    +1  > Arg count
+
+Arg 1: int status
+    (0) > Type
+    +1  > Len
+    (0) > Value
+
+<<<<<
+syscall

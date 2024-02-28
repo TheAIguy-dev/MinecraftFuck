@@ -1,24 +1,59 @@
+A Minecraft server in BrainFuck
+
+
 map(syscall; %)
 
-Print "Hello(comma) World!"
-=============================
-string("Hello, World!
-")
-repeat(.>; 14) >
-repeat(<[-]; 14)
-=============================
 
-Exit with status 42
-=============================
-    exit()
-        +60 > Code 60 = exit()
-        +1  > Arg count: 1
+Create a socket
+===========================
+    +41 > System call code 41: socket()
+    +3  > Arg count: 3
 
-    Arg 1: int status
-        (0) > Normal
-        +1  > Len: 1
-        +42 > Content: 42
+    Arg 1: int domain
+        (0) > Type
+        +1  > Len
+        +2  > Value (AF_INET)
 
-    <<<<< Return to cell 0
-    syscall Execute
-=============================
+    Arg 2: int type
+        (0) > Type
+        +1  > Len
+        +1  > Value (SOCK_STREAM)
+
+    Arg 3: int protocol
+        (0) > Type
+        +1  > Len
+        (0) > Value (default protocol)
+
+    <<<<<<<<<<<
+    syscall
+
+    repeat(>[-]; 10)
+    <<<<<<<<<<
+===========================
+
+Congratulations! Cell 0 now contains the file descriptor!
+
+Bind the socket
+===========================
+    +49 > System call code 49: bind()
+    +3  > Arg count: 3
+
+    Arg 1: int sockfd
+        (0)                  > Type
+        +1                   > Len
+        <<<<[->>>>+<<<<]>>>> > Value
+
+    Arg 2: const struct sockaddr *addr
+        +1   > Type
+        +16  > Len
+
+        Value
+        +2   > Address family
+        (0)  >
+        +99  >
+        +221 > Port
+
+===========================
+
+
+[-] exit.mbf
