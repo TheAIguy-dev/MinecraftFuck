@@ -1,6 +1,6 @@
 Exist with status of the current cell
 
-[->>>>+<<<<]
+[->>>>+<<<<] move error_code
 exit()
     +60 > Code
     +1  > Arg count

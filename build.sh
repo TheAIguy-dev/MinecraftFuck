@@ -1,2 +1,2 @@
-./meta_brain_fuck --charset "[]<>+-.,%"
+./meta_brain_fuck
 ./systemf out.bf
