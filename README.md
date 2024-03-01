@@ -1,4 +1,4 @@
-An attempt at making a Minecraft server in MetaBrainFuck.
+An attempt at making a Minecraft server in [MetaBrainFuck](https://github.com/TheAIguy-dev/meta_brain_fuck).
 
 Some useful resources for myself:
 
