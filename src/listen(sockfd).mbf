@@ -6,27 +6,19 @@ Listen for connections
     +2  > Arg count: 2
 
     Arg 1: int sockfd
-        (0)      > Type
+        +0       > Type
         +1       > Length
         (sockfd) > Value
 
     Arg 2: int backlog
-        (0) > Type
+        +0  > Type
         +1  > Length
         +1  > Value
 
     repeat(<; 8)
     syscall
 
-    Exit if error
-    +1
-    [
-        -1
-        repeat(>[-]; 7)
-        repeat(<; 7)
-        exit(error_code).mbf
-    ]
-    -1
+    exit_if_error(value).mbf
 
     >>>>[-<<<<+>>>>]<<<< move sockfd
 

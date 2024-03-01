@@ -1,3 +1,10 @@
+Call semantics
+Cell 0: sockfd
+
+Return semantics
+Cell 0: sockfd
+Cell 1: connfd
+
 Accept a connection
 ===========================
     [->>>>+<<<<] move sockfd
@@ -6,40 +13,29 @@ Accept a connection
     +3  > Arg count: 3
 
     Arg 1: int sockfd
-        (0)      > Type
+        +0       > Type
         +1       > Length
         (sockfd) > Value
 
     Arg 2: const struct sockaddr *addr
-        +1  > Type
-        +16 > Length
-
-        Value
-        repeat(>; 16)
+        +1            > Type
+        +16           > Length
+        repeat(>; 15) > Value
 
     Arg 3: socklen_t addrlen
-        (0) > Type
+        +0  > Type
         +1  > Length
         +16 > Value
 
     repeat(<; 26)
     syscall
 
-    Exit if error
-    +1
-    [
-        -1
-        repeat(>[-]; 25)
-        repeat(<; 25)
-        exit(error_code).mbf
-    ]
-    -1
+    exit_if_error(value).mbf
 
     >[-]< [->+<] move connfd
 
-    >>>>[-<<<<+>>>>]<<<< move sockfd
+    >>>>[-<<<<+>>>>]<<< move sockfd
 
-    >
     repeat(>[-]; 24)
-    repeat(<; 25)
+    repeat(<; 26)
 ===========================

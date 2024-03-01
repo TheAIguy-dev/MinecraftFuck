@@ -1,0 +1,18 @@
+Call semantics
+Cell 0: status
+
+Exit with status status
+===========================
+    [->>>>+<<<<] move status
+
+    +60 > System call code 60: exit()
+    +1  > Arg count
+
+    Arg 1: int status
+        +0       > Type
+        +1       > Len
+        (status) > Value
+
+    <<<<<
+    syscall
+===========================

@@ -1,35 +1,30 @@
+Return semantics
+Cell 0: sockfd
+
 Create a socket
 ===========================
     +41 > System call code 41: socket()
     +3  > Arg count: 3
 
     Arg 1: int domain
-        (0) > Type
+        +0  > Type
         +1  > Len
         +2  > Value (AF_INET)
 
     Arg 2: int type
-        (0) > Type
+        +0  > Type
         +1  > Len
         +1  > Value (SOCK_STREAM)
 
     Arg 3: int protocol
-        (0) > Type
+        +0  > Type
         +1  > Len
-        (0) > Value (default protocol)
+        +0  > Value (default protocol)
 
     repeat(<; 11)
     syscall
 
-    Exit if error
-    +1
-    [
-        -1
-        repeat(>[-]; 10)
-        repeat(<; 10)
-        exit(error_code).mbf
-    ]
-    -1
+    exit_if_error(value).mbf
 
     repeat(>[-]; 10)
     repeat(<; 10)

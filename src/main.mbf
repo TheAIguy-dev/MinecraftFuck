@@ -2,6 +2,7 @@ A Minecraft server in MetaBrainFuck
 
 
 map(syscall; %)
+map(breakpoint; $)
 
 socket().mbf
 Cell 0: sockfd (current)
@@ -22,9 +23,12 @@ Loop infinitely
     Cell 1: sockfd (current)
     Cell 2: connfd
 
-    
+    Read 1 byte from connection
+    >>+<
+    read(fd, count).mbf
+    >>.
 
     <
 ]
 
-exit(error_code).mbf
+exit(status).mbf
