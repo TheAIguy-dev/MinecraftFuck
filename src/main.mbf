@@ -1,11 +1,30 @@
-A Minecraft server in BrainFuck
+A Minecraft server in MetaBrainFuck
 
 
 map(syscall; %)
 
 socket().mbf
-cell 0: sockfd
+Cell 0: sockfd (current)
 
 bind(sockfd).mbf
+listen(sockfd).mbf
+
+[->+<] move sockfd
+
+Loop infinitely
++1
+[
+    >
+
+    accept(sockfd).mbf
+
+    Cell 0: loop
+    Cell 1: sockfd (current)
+    Cell 2: connfd
+
+    
+
+    <
+]
 
 exit(error_code).mbf

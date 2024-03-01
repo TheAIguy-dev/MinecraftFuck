@@ -1,0 +1,181 @@
+Desired return semantics
+Cell 0: fd
+Cell 1: count or less
+Cell 2 to (2 plus count or less): data
+
+Read count bytes from fd
+===========================
+    Cell 0: fd (current)
+    Cell 1: count
+    Cell 2: 0
+    Cell 3: 0
+    Cell 4: 0
+
+    [->>+>>>+<<<<<] duplicate fd
+    >[->>>>>>+>+>+<<<<<<<<] duplicate count
+
+    I need to set the buf pointer to cell 2 and not to overwrite fd I need to move the system call one cell to the right
+
+    Cell 0: 0 (current)
+    Cell 1: 0
+    Cell 2: fd
+    Cell 3: 0
+    Cell 4: fd
+    Cell 5: 0
+    Cell 6: count
+    Cell 7: count
+    Cell 8: count
+
+    Cell 0: 0 (current)
+    Cell 1: 0
+    Cell 2: 0
+    Cell 3: 0
+    Cell 4: fd
+    Cell 5: 0
+    Cell 6: count
+    Cell 7: count
+    Cell 8: count
+
+    (0) > System call code 0: read()
+    +3  > Arg count: 3
+
+    Cell 0: 0
+    Cell 1: 3
+    Cell 2: 0 (current)
+    Cell 3: 0
+    Cell 4: fd
+    Cell 5: 0
+    Cell 6: count
+    Cell 7: count
+    Cell 8: count
+
+    Arg 1: int fd
+        (0)  > Type
+        +1   > Length
+        (fd) > Value
+
+    Cell 0: 0
+    Cell 1: 3
+    Cell 2: 0
+    Cell 3: 1
+    Cell 4: fd
+    Cell 5: 0 (current)
+    Cell 6: count
+    Cell 7: count
+    Cell 8: count
+
+    Arg 2: char *buf
+        +2                         > Type
+        (count)                    > Length
+        ++move_right(n, value).mbf > Value
+
+    <<
+
+    Cell 0: 0
+    Cell 1: 3
+    Cell 2: 0
+    Cell 3: 1
+    Cell 4: fd
+    Cell 5: 2
+    Cell 6: count
+    Cell 7 to (7 plus count): 0
+    Cell (count plus 1): 0 (current)
+    Cell (count plus 2): 0
+    Cell (count plus 3): count
+
+    Arg 3: size_t count
+        (0)     > Type
+        +1      > Length
+        (count) > Value
+
+    Cell 0: 0
+    Cell 1: 3
+    Cell 2: 0
+    Cell 3: 1
+    Cell 4: fd
+    Cell 5: 2
+    Cell 6: count
+    Cell 7 to (7 plus count): 0
+    Cell (count plus 1): 0
+    Cell (count plus 2): 1
+    Cell (count plus 3): count
+    Cell (count plus 4): 0 (current)
+
+    <<<
+    move_left_nonzero().mbf
+    repeat(<; 6)
+
+    Cell 0: 0
+    Cell 1: 3
+    Cell 2: 0
+    Cell 3: 1
+    Cell 4: fd
+    Cell 5: 2
+    Cell 6: count (current)
+    Cell 7 to (7 plus count): 0
+    Cell (count plus 1): 0
+    Cell (count plus 2): 1
+    Cell (count plus 3): count
+    Cell (count plus 4): 0
+
+    syscall
+
+    Exit if error
+    +1
+    [
+        -1
+        repeat(>[-]; 10)
+        repeat(<; 10)
+        exit(error_code).mbf
+    ]
+    -1
+
+    Cell 0: count or less (current)
+    Cell 1: 3
+    Cell 2: 0
+    Cell 3: 1
+    Cell 4: fd
+    Cell 5: 2
+    Cell 6: count
+    Cell 7 to (7 plus count): data
+    Cell (count plus 1): 0
+    Cell (count plus 2): 1
+    Cell (count plus 3): count
+    Cell (count plus 4): 0
+
+    >[-]< [->+<] move count
+    >>>>[-<<<<+>>>>]<<<< move fd
+
+    Cell 0: fd (current)
+    Cell 1: count or less
+    Cell 2: 0
+    Cell 3: 1
+    Cell 4: 0
+    Cell 5: 2
+    Cell 6: count
+    Cell 7 to (7 plus count): data
+    Cell (count plus 1): 0
+    Cell (count plus 2): 1
+    Cell (count plus 3): count
+    Cell (count plus 4): 0
+
+    >>>->>-->[-<<<<+>>>>]<<<<
+
+    Cell 0: fd
+    Cell 1: count or less
+    Cell 2: count (current)
+    Cell 3: 0
+    Cell 4: 0
+    Cell 5: 0
+    Cell 6: 0
+    Cell 7 to (7 plus count): data
+    Cell (count plus 1): 0
+    Cell (count plus 2): 1
+    Cell (count plus 3): count
+    Cell (count plus 4): 0
+
+
+
+    repeat(>[-]; 9)
+    repeat(<; 10)
+===========================

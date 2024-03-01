@@ -1,8 +1,8 @@
-Bind the socket
+Accept a connection
 ===========================
     [->>>>+<<<<] move sockfd
 
-    +49 > System call code 49: bind()
+    +43 > System call code 43: accept()
     +3  > Arg count: 3
 
     Arg 1: int sockfd
@@ -11,26 +11,11 @@ Bind the socket
         (sockfd) > Value
 
     Arg 2: const struct sockaddr *addr
-        +1   > Type
-        +16  > Length
+        +1  > Type
+        +16 > Length
 
         Value
-        +2   > sin_family
-        +0   >
-        +99  > sin_port
-        +221 >
-        +0   > sin_addr
-        +0   >
-        +0   >
-        +0   >
-        +100 > sin_zero
-        +0   >
-        +0   >
-        +0   >
-        +0   >
-        +0   >
-        +0   >
-        +0   >
+        repeat(>; 16)
 
     Arg 3: socklen_t addrlen
         (0) > Type
@@ -50,8 +35,11 @@ Bind the socket
     ]
     -1
 
+    >[-]< [->+<] move connfd
+
     >>>>[-<<<<+>>>>]<<<< move sockfd
 
-    repeat(>[-]; 25)
+    >
+    repeat(>[-]; 24)
     repeat(<; 25)
 ===========================

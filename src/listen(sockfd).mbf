@@ -1,0 +1,35 @@
+Listen for connections
+===========================
+    [->>>>+<<<<] move sockfd
+
+    +50 > System call code 50: listen()
+    +2  > Arg count: 2
+
+    Arg 1: int sockfd
+        (0)      > Type
+        +1       > Length
+        (sockfd) > Value
+
+    Arg 2: int backlog
+        (0) > Type
+        +1  > Length
+        +1  > Value
+
+    repeat(<; 8)
+    syscall
+
+    Exit if error
+    +1
+    [
+        -1
+        repeat(>[-]; 7)
+        repeat(<; 7)
+        exit(error_code).mbf
+    ]
+    -1
+
+    >>>>[-<<<<+>>>>]<<<< move sockfd
+
+    repeat(>[-]; 7)
+    repeat(<; 7)
+===========================
