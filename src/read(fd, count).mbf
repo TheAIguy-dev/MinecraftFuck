@@ -6,7 +6,7 @@ Return semantics
 Cell 0: fd
 Cell 1: count or less
 Cell 2 to (2 plus count or less): data
-Cells (2 plus count or less) to 11 will contain junk
+Cells (2 plus count or less) to 11: junk
 
 Read count bytes from fd
 ===========================
