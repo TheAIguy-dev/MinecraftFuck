@@ -1,0 +1,82 @@
+Call semantics
+Cell 0: fd
+Cell 1: 0
+Cell 2: 0
+Cell 3: 0
+Cell 4: 0
+Cell 5: 0
+Cell 6: count
+Cell 7 to (7 plus count): buf
+Cell 7 plus count: 0
+Cell 8 plus count: 1
+Cell 9 plus count: count
+
+Return semantics
+Cell 0: fd
+Cell 1: count or less
+
+Read count bytes from fd
+===========================
+    [->>>>+<<<<] move fd
+
+    Cell 0: 0 (current)
+    Cell 1: 0
+    Cell 2: 0
+    Cell 3: 0
+    Cell 4: fd
+    Cell 5: 0
+    Cell 6: count
+    Cell 7 to (7 plus count): buf
+    Cell 7 plus count: 0
+    Cell 8 plus count: 1
+    Cell 9 plus count: count
+
+    +1 > System call code 1: write()
+    +3 > Arg count
+
+    Arg 1: int fd
+        +0   > Type
+        +1   > Length
+        (fd) > Value
+
+    Cell 0: 1
+    Cell 1: 3
+    Cell 2: 0
+    Cell 3: 1
+    Cell 4: fd
+    Cell 5: 0 (current)
+    Cell 6: count
+    Cell 7 to (7 plus count): buf
+    Cell 7 plus count: 0
+    Cell 8 plus count: 1
+    Cell 9 plus count: count
+
+    Arg 2: void *buf
+        +1      > Type
+        (count) > Length
+        (buf)
+
+    Arg 3: size_t count
+        (0)     > Type
+        (1)     > Length
+        (count) > Value
+
+    Cell 0: 1
+    Cell 1: 3
+    Cell 2: 0
+    Cell 3: 1
+    Cell 4: fd
+    Cell 5: 1
+    Cell 6: count
+    Cell 7 to (7 plus count): buf
+    Cell 7 plus count: 0
+    Cell 8 plus count: 1
+    Cell 9 plus count: count
+
+    repeat(<; 10)
+    syscall
+
+    exit_if_error(value).mbf
+
+    [-]>>>>[-<<<<+>>>>]<<<< move fd
+===========================

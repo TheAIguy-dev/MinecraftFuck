@@ -10,100 +10,28 @@ Cells (2 plus count or less) to 11 will contain junk
 
 Read count bytes from fd
 ===========================
-    Cell 0: fd (current)
-    Cell 1: count
-    Cell 2: 0
-    Cell 3: 0
-    Cell 4: 0
-
     [->>+>>>+<<<<<]>>[-<<+>>]<< copy fd
     >[-repeat(>; 10)+repeat(<; 10)] move count
 
-    Cell 0: fd
-    Cell 1: 0 (current)
-    Cell 2: 0
-    Cell 3: 0
-    Cell 4: 0
-    Cell 5: fd
-    Cell 6: 0
-    Cell 7: 0
-    Cell 8: 0
-    Cell 9: 0
-    Cell 10: 0
-    Cell 11: count
-
-    +0  > System call code 0: read()
-    +3  > Arg count
-
-    Cell 0: fd
-    Cell 1: 0
-    Cell 2: 3
-    Cell 3: 0 (current)
-    Cell 4: 0
-    Cell 5: fd
-    Cell 6: 0
-    Cell 7: 0
-    Cell 8: 0
-    Cell 9: 0
-    Cell 10: 0
-    Cell 11: count
+    +0 > System call code 0: read()
+    +3 > Arg count
 
     Arg 1: int fd
         +0   > Type
         +1   > Length
         (fd) > Value
 
-    Cell 0: fd
-    Cell 1: 0
-    Cell 2: 3
-    Cell 3: 0
-    Cell 4: 1
-    Cell 5: fd
-    Cell 6: 0 (current)
-    Cell 7: 0
-    Cell 8: 0
-    Cell 9: 0
-    Cell 10: 0
-    Cell 11: count
-
-    Arg 2: char *buf
+    Arg 2: void *buf
         +2 > Type
         +1 > Length
-        +2 > Value
-
-    Cell 0: fd
-    Cell 1: 0
-    Cell 2: 3
-    Cell 3: 0
-    Cell 4: 1
-    Cell 5: fd
-    Cell 6: 2
-    Cell 7: 1
-    Cell 8: 2
-    Cell 9: 0 (current)
-    Cell 10: 0
-    Cell 11: count
+        +4 > Value
 
     Arg 3: size_t count
         +0      > Type
         +1      > Length
         (count) > Value
 
-    Cell 0: fd
-    Cell 1: 0
-    Cell 2: 3
-    Cell 3: 0
-    Cell 4: 1
-    Cell 5: fd
-    Cell 6: 2
-    Cell 7: 1
-    Cell 8: 2
-    Cell 9: 0
-    Cell 10: 1
-    Cell 11: count
-    cell 12: 0 (current)
-
-    repeat(<; 11);
+    repeat(<; 11)
     syscall
 
     exit_if_error(value).mbf

@@ -22,8 +22,8 @@ Accept a connection
         +16           > Length
         repeat(>; 15) > Value
 
-    Arg 3: socklen_t addrlen
-        +0  > Type
+    Arg 3: socklen_t *addrlen
+        +1  > Type
         +1  > Length
         +16 > Value
 
@@ -37,5 +37,5 @@ Accept a connection
     >>>>[-<<<<+>>>>]<<< move sockfd
 
     repeat(>[-]; 24)
-    repeat(<; 26)
+    repeat(<; 25)
 ===========================

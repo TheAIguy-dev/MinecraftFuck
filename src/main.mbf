@@ -18,17 +18,51 @@ Loop infinitely
     >
 
     accept(sockfd).mbf
+    >
 
     Cell 0: loop
-    Cell 1: sockfd (current)
-    Cell 2: connfd
+    Cell 1: sockfd
+    Cell 2: connfd (current)
 
-    Read 1 byte from connection
-    >>+<
+    Read 80 bytes from connection
+    >+80<
+
+    Cell 0: loop
+    Cell 1: sockfd
+    Cell 2: connfd (current)
+    Cell 3: 80
+
     read(fd, count).mbf
-    >>.
 
-    <
+    clear_right(n).mbf
+    find_left_nonzero().mbf
+
+    Cell 0: loop
+    Cell 1: sockfd
+    Cell 2: connfd (current)
+
+    >>>>>>
+    +173 > count
+
+    +171 >
+    +1   >
+    +0   >
+    +168 >
+    +1   >
+    string("{"version":{"name":"1.20.4","protocol":765},"players":{"max":20,"online":0},"description":{"text":"A BrainFuck Server"},"enforcesSecureChat":false,"previewsChat":false}")
+    repeat(>; 168)
+
+    >+>
+    +173 count
+    repeat(<; 182)
+
+    write(fd, buf, count).mbf
+
+    [-]
+    repeat(>[-]; 182)
+    repeat(<; 182)
+
+    <<
 ]
 
 exit(status).mbf
